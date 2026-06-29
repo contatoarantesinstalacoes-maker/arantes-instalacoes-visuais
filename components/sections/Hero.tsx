@@ -1,112 +1,76 @@
+const phone = "5511932072394";
+
+const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
+  "Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento para instalação de comunicação visual."
+)}`;
+
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
-
-      {/* Vídeo */}
+    <section className="relative min-h-[92vh] overflow-hidden bg-black text-white">
       <video
+        className="absolute inset-0 h-full w-full object-cover opacity-35"
+        src="/videos/hero.mp4"
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
 
-      {/* Gradiente */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
-
-      {/* Conteúdo */}
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 md:px-12">
-
-        <div className="max-w-3xl">
-
-          <div className="mb-6 inline-flex rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2">
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-blue-400">
-              Desde 2017
-            </span>
-          </div>
-
-          <h1 className="text-5xl font-black leading-tight md:text-7xl">
-            EXECUÇÃO
-            <br />
-            TÉCNICA EM
-            <br />
-            COMUNICAÇÃO
-            <br />
-            VISUAL
-          </h1>
-
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-300">
-            Transformamos projetos em instalações executadas com precisão,
-            segurança e acabamento profissional para empresas, indústrias,
-            franquias, eventos e grandes marcas.
+      <div className="relative z-10 mx-auto flex min-h-[92vh] max-w-7xl flex-col justify-end px-5 pb-10 pt-28 md:px-16 md:pb-16">
+        <div className="max-w-4xl">
+          <p className="mb-5 inline-flex rounded-full border border-blue-500/50 bg-blue-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-blue-400">
+            Desde 2017 • Comunicação Visual
           </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <h1 className="text-[2.7rem] font-black leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
+            Instalação técnica para marcas que exigem acabamento profissional.
+          </h1>
 
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 md:text-2xl md:leading-10">
+            Fachadas, ACM, letras caixa, adesivação, eventos, estandes e
+            projetos em altura com execução segura e padrão corporativo.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
-              href="https://wa.me/5511932072394"
-              target="_blank"
-              className="rounded-xl bg-blue-600 px-8 py-4 text-center font-bold transition duration-300 hover:bg-blue-500"
+              href={whatsappUrl}
+              className="rounded-full bg-blue-600 px-8 py-5 text-center text-base font-black text-white transition hover:bg-blue-500 md:text-lg"
             >
-              Solicitar orçamento
+              Solicitar orçamento pelo WhatsApp
             </a>
 
             <a
               href="#portfolio"
-              className="rounded-xl border border-white/20 px-8 py-4 text-center font-bold transition duration-300 hover:bg-white/10"
+              className="rounded-full border border-white/20 px-8 py-5 text-center text-base font-black text-white transition hover:bg-white hover:text-black md:text-lg"
             >
-              Ver projetos
+              Ver projetos realizados
             </a>
-
           </div>
-
         </div>
 
-      </div>
-
-      {/* Barra inferior */}
-
-      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-black/60 backdrop-blur-md">
-
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-6 text-center md:grid-cols-4">
-
-          <div>
-            <h3 className="text-2xl font-black">2017</h3>
-            <p className="mt-1 text-sm text-zinc-400">
-              Experiência no setor
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-black">IRATA</h3>
-            <p className="mt-1 text-sm text-zinc-400">
-              Trabalhos em altura
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-black">Corporativo</h3>
-            <p className="mt-1 text-sm text-zinc-400">
-              Empresas e eventos
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-black">Brasil</h3>
-            <p className="mt-1 text-sm text-zinc-400">
-              Atendimento sob consulta
-            </p>
-          </div>
-
+        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          {[
+            ["2017", "Experiência no setor"],
+            ["IRATA", "Trabalhos em altura"],
+            ["+50", "Empresas atendidas"],
+            ["Brasil", "Atendimento sob consulta"],
+          ].map(([title, text]) => (
+            <div
+              key={title}
+              className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur md:p-6"
+            >
+              <strong className="block break-words text-3xl font-black leading-none text-blue-500 md:text-5xl">
+                {title}
+              </strong>
+              <span className="mt-3 block text-sm font-semibold leading-6 text-zinc-300 md:text-base">
+                {text}
+              </span>
+            </div>
+          ))}
         </div>
-
       </div>
-
     </section>
   );
 }
