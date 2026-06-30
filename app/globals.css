@@ -6,14 +6,43 @@
 
 html {
   scroll-behavior: smooth;
+  background: #000;
 }
 
 body {
   margin: 0;
   background: #050505;
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
+}
+
+::selection {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d4ed8;
+  border-radius: 999px;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+section {
+  scroll-margin-top: 90px;
 }
