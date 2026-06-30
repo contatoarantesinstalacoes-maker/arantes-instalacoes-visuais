@@ -9,7 +9,10 @@ const features = [
 
 export default function About() {
   return (
-    <section className="bg-[#080808] px-6 py-24 md:px-16">
+   <section
+  id="about"
+  className="bg-[#080808] px-6 py-24 md:px-16"
+>
       <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
 
         <div className="relative">
