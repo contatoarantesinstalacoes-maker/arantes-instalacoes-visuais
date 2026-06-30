@@ -3,66 +3,80 @@ import Image from "next/image";
 const projects = [
   {
     image: "/images/portfolio1.jpg",
-    title: "Comunicação Visual Corporativa",
-    category: "Empresas",
+    category: "Trabalho em altura",
+    title: "Instalação em fachada corporativa",
+    description:
+      "Execução técnica utilizando acesso por cordas com total segurança e acabamento profissional.",
   },
   {
     image: "/images/portfolio2.jpg",
-    title: "Projetos em Altura",
-    category: "IRATA",
+    category: "Letras Caixa",
+    title: "Comunicação visual corporativa",
+    description:
+      "Instalação precisa para empresas que exigem qualidade e durabilidade.",
   },
   {
     image: "/images/portfolio3.jpg",
-    title: "Eventos e Estandes",
-    category: "Eventos",
+    category: "ACM",
+    title: "Revestimento de fachada",
+    description:
+      "Projetos executados com alinhamento, acabamento e padrão profissional.",
   },
   {
     image: "/images/portfolio4.jpg",
-    title: "Fachadas Comerciais",
-    category: "Fachadas",
+    category: "Eventos",
+    title: "Montagem de comunicação visual",
+    description:
+      "Painéis, estruturas e instalações para eventos corporativos.",
   },
   {
     image: "/images/portfolio5.jpg",
-    title: "Letras Caixa e ACM",
-    category: "Comunicação Visual",
+    category: "Fachadas",
+    title: "Execução completa",
+    description:
+      "Projetos desenvolvidos para fortalecer a identidade visual das empresas.",
   },
   {
     image: "/images/portfolio6.jpg",
-    title: "Projetos Especiais",
-    category: "Execução",
+    category: "Projetos especiais",
+    title: "Grandes instalações",
+    description:
+      "Execuções em ambientes corporativos e projetos de alta complexidade.",
   },
 ];
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="bg-black py-32 px-6 md:px-12">
-
+    <section
+      id="portfolio"
+      className="bg-[#050505] px-6 py-28 md:px-16"
+    >
       <div className="mx-auto max-w-7xl">
 
-        <div className="mb-20">
+        <div className="max-w-3xl">
 
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-blue-500">
+          <span className="rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-blue-400">
             PORTFÓLIO
-          </p>
+          </span>
 
-          <h2 className="mt-6 max-w-4xl text-5xl font-black leading-tight md:text-6xl">
-            Projetos executados para empresas, eventos e grandes marcas.
+          <h2 className="mt-6 text-4xl font-black leading-tight md:text-6xl">
+            Projetos executados para empresas e grandes marcas.
           </h2>
 
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-            Cada projeto representa nosso compromisso com execução técnica,
-            segurança, acabamento e organização.
+          <p className="mt-6 text-lg leading-8 text-zinc-300">
+            Cada instalação representa o compromisso da Arantes com segurança,
+            organização e acabamento profissional.
           </p>
 
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 
           {projects.map((project) => (
 
             <div
-              key={project.image}
-              className="group overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0b]"
+              key={project.title}
+              className="group overflow-hidden rounded-[32px] border border-white/10 bg-zinc-950 transition duration-500 hover:-translate-y-2 hover:border-blue-500"
             >
 
               <div className="overflow-hidden">
@@ -70,23 +84,33 @@ export default function Portfolio() {
                 <Image
                   src={project.image}
                   alt={project.title}
-                  width={1200}
-                  height={900}
-                  unoptimized
-                  className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
+                  width={900}
+                  height={700}
+                  className="h-80 w-full object-cover transition duration-700 group-hover:scale-110"
                 />
 
               </div>
 
-              <div className="p-8">
+              <div className="p-7">
 
-                <span className="text-sm uppercase tracking-[0.25em] text-blue-500">
+                <span className="text-sm font-bold uppercase tracking-[0.22em] text-blue-400">
                   {project.category}
                 </span>
 
-                <h3 className="mt-4 text-3xl font-black">
+                <h3 className="mt-4 text-2xl font-black">
                   {project.title}
                 </h3>
+
+                <p className="mt-5 leading-8 text-zinc-400">
+                  {project.description}
+                </p>
+
+                <a
+                  href="https://wa.me/5511932072394"
+                  className="mt-8 inline-flex font-bold text-blue-400 transition hover:text-blue-300"
+                >
+                  Solicitar orçamento →
+                </a>
 
               </div>
 
@@ -97,7 +121,6 @@ export default function Portfolio() {
         </div>
 
       </div>
-
     </section>
   );
 }
