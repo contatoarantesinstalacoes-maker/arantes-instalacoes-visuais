@@ -1,33 +1,98 @@
 const phone = "5511932072394";
 
-const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
-  "Olá! Quero solicitar um orçamento para instalação de comunicação visual."
-)}`;
+const whatsapp = `https://wa.me/${phone}`;
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#030303] px-6 py-12 md:px-16">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h3 className="text-2xl font-black">Arantes Instalações Visuais</h3>
-          <p className="mt-3 max-w-xl text-zinc-400">
-            Execução técnica em comunicação visual, fachadas, adesivação, ACM,
-            letras caixa, eventos, estandes e trabalhos em altura.
+    <footer className="border-t border-white/10 bg-black px-6 py-20 md:px-16">
+      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-4">
+
+        <div className="lg:col-span-2">
+
+          <h2 className="text-3xl font-black">
+            Arantes Instalações Visuais
+          </h2>
+
+          <p className="mt-6 max-w-lg leading-8 text-zinc-400">
+            Empresa especializada em instalações de comunicação visual,
+            fachadas comerciais, ACM, letras caixa, adesivação, painéis,
+            eventos corporativos e trabalhos em altura com acesso por cordas.
           </p>
-        </div>
 
-        <div className="flex flex-col gap-3 text-zinc-300 md:text-right">
-          <a href={whatsappUrl} target="_blank" className="font-bold text-blue-400">
-            WhatsApp: (11) 93207-2394
+          <a
+            href={whatsapp}
+            className="mt-8 inline-flex rounded-full bg-blue-600 px-8 py-4 font-bold transition hover:bg-blue-500"
+          >
+            Falar pelo WhatsApp
           </a>
-          <span>São Paulo - SP</span>
-          <span>Atendimento sob consulta para todo o Brasil</span>
+
         </div>
+
+        <div>
+
+          <h3 className="font-black uppercase tracking-widest text-white">
+            Serviços
+          </h3>
+
+          <ul className="mt-6 space-y-4 text-zinc-400">
+
+            <li>Fachadas Comerciais</li>
+
+            <li>Letras Caixa</li>
+
+            <li>Revestimento ACM</li>
+
+            <li>Adesivação</li>
+
+            <li>Painéis</li>
+
+            <li>Eventos</li>
+
+            <li>Trabalhos em Altura</li>
+
+          </ul>
+
+        </div>
+
+        <div>
+
+          <h3 className="font-black uppercase tracking-widest text-white">
+            Contato
+          </h3>
+
+          <div className="mt-6 space-y-5 text-zinc-400">
+
+            <p>São Paulo • SP</p>
+
+            <p>Atendimento nacional sob consulta</p>
+
+            <p>WhatsApp</p>
+
+            <a
+              href={whatsapp}
+              className="font-bold text-blue-400 hover:text-blue-300"
+            >
+              (11) 93207-2394
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-sm text-zinc-500">
-        © 2026 Arantes Instalações Visuais. Todos os direitos reservados.
+      <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-zinc-500 md:flex-row">
+
+        <p>
+          © 2026 Arantes Instalações Visuais. Todos os direitos reservados.
+        </p>
+
+        <p>
+          Desenvolvido para máxima performance e conversão.
+        </p>
+
       </div>
+
     </footer>
   );
 }
