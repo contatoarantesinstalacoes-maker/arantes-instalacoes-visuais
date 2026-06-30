@@ -5,10 +5,10 @@ const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
 )}`;
 
 const stats = [
-  ["2017", "Experiência no setor"],
-  ["IRATA", "Trabalhos em altura"],
-  ["+50", "Empresas atendidas"],
-  ["Brasil", "Atendimento sob consulta"],
+  ["8+", "anos de experiência"],
+  ["IRATA", "acesso por cordas"],
+  ["Brasil", "atendimento sob consulta"],
+  ["100%", "foco em execução"],
 ];
 
 export default function Hero() {
@@ -32,18 +32,19 @@ export default function Hero() {
           </p>
 
           <h1 className="max-w-4xl text-[2.45rem] font-black leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl">
-            Instalação técnica para marcas que exigem acabamento profissional.
+            Instalação técnica em comunicação visual para empresas.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300 md:text-2xl md:leading-10">
-            Especialistas em fachadas, ACM, letras caixa e instalações em
-            altura para empresas que exigem segurança, precisão e acabamento.
+            Fachadas comerciais, ACM, letras caixa, adesivação, painéis,
+            eventos e trabalhos em altura executados com segurança, precisão e
+            acabamento profissional.
           </p>
 
           <div className="mt-6 grid gap-2 text-sm font-bold text-zinc-200 sm:grid-cols-3 md:text-base">
-            <span>✓ Desde 2017</span>
-            <span>✓ Trabalho em altura</span>
-            <span>✓ Atendimento corporativo</span>
+            <span>✓ IRATA</span>
+            <span>✓ Atendimento em todo Brasil</span>
+            <span>✓ Orçamento rápido</span>
           </div>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
