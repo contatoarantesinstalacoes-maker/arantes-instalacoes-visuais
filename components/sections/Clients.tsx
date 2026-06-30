@@ -1,55 +1,52 @@
 const clients = [
-  "Dermadream",
-  "Embale",
-  "Grupo Yamam",
-  "Grupo Gran",
-  "Nexti",
   "Senac",
   "Baumer",
+  "Dermadream",
+  "Camarote Bar Brahma",
+  "51 Ice",
+  "Proaloe",
+  "Grupo Yamam",
+  "Embale",
+  "Digimed",
   "Copra",
   "Poliresinas",
   "Video Systems",
-  "Digimed",
-  "Camarote Bar Brahma",
 ];
 
 export default function Clients() {
   return (
-    <section className="bg-[#080808] py-24">
-
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-black px-6 py-28 md:px-16">
+      <div className="mx-auto max-w-7xl">
 
         <div className="text-center">
 
-          <p className="uppercase tracking-[0.35em] text-blue-500 text-sm font-bold">
-            EXPERIÊNCIA COMPROVADA
-          </p>
+          <span className="rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-blue-400">
+            EMPRESAS ATENDIDAS
+          </span>
 
-          <h2 className="mt-6 text-4xl md:text-6xl font-black">
-            Projetos executados para
-            <br />
-            empresas de diversos segmentos.
+          <h2 className="mt-6 text-4xl font-black md:text-6xl">
+            Experiência em projetos para grandes empresas.
           </h2>
 
-          <p className="mx-auto mt-8 max-w-3xl text-lg text-zinc-400 leading-8">
-            Ao longo da nossa trajetória participamos da execução de projetos
-            para indústrias, hospitais, instituições de ensino, eventos,
-            estandes, centros corporativos e grandes marcas.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
+            Ao longo dos anos participamos de instalações para empresas,
+            hospitais, indústrias, eventos corporativos e grandes marcas,
+            sempre com foco em qualidade, segurança e acabamento.
           </p>
 
         </div>
 
-        <div className="mt-20 grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="mt-20 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
 
           {clients.map((client) => (
 
             <div
               key={client}
-              className="flex h-28 items-center justify-center rounded-3xl border border-white/10 bg-zinc-900 transition duration-300 hover:border-blue-500 hover:-translate-y-1"
+              className="group rounded-3xl border border-white/10 bg-zinc-950 p-8 text-center transition duration-300 hover:-translate-y-2 hover:border-blue-500"
             >
-              <span className="text-center text-lg font-semibold text-zinc-200">
+              <h3 className="text-lg font-bold text-zinc-300 transition group-hover:text-white">
                 {client}
-              </span>
+              </h3>
             </div>
 
           ))}
@@ -57,7 +54,6 @@ export default function Clients() {
         </div>
 
       </div>
-
     </section>
   );
 }
