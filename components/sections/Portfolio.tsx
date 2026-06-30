@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const projects = [
   {
@@ -45,16 +50,19 @@ const projects = [
   },
 ];
 
+const slides = projects.map((project) => ({
+  src: project.image,
+  title: project.title,
+  description: project.description,
+}));
+
 export default function Portfolio() {
+  const [index, setIndex] = useState(-1);
+
   return (
-    <section
-      id="portfolio"
-      className="bg-[#050505] px-6 py-28 md:px-16"
-    >
+    <section id="portfolio" className="bg-[#050505] px-6 py-28 md:px-16">
       <div className="mx-auto max-w-7xl">
-
         <div className="max-w-3xl">
-
           <span className="rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-blue-400">
             PORTFÓLIO
           </span>
@@ -64,23 +72,24 @@ export default function Portfolio() {
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-zinc-300">
-            Cada instalação representa o compromisso da Arantes com segurança,
-            organização e acabamento profissional.
+            Toque em qualquer imagem para visualizar em tela cheia. Cada
+            instalação representa nosso compromisso com segurança, organização e
+            acabamento profissional.
           </p>
-
         </div>
 
         <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-
-          {projects.map((project) => (
-
-            <div
+          {projects.map((project, projectIndex) => (
+            <article
               key={project.title}
               className="group overflow-hidden rounded-[32px] border border-white/10 bg-zinc-950 transition duration-500 hover:-translate-y-2 hover:border-blue-500"
             >
-
-              <div className="overflow-hidden">
-
+              <button
+                type="button"
+                onClick={() => setIndex(projectIndex)}
+                className="block w-full overflow-hidden text-left"
+                aria-label={`Abrir imagem do projeto ${project.title}`}
+              >
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -88,18 +97,14 @@ export default function Portfolio() {
                   height={700}
                   className="h-80 w-full object-cover transition duration-700 group-hover:scale-110"
                 />
-
-              </div>
+              </button>
 
               <div className="p-7">
-
                 <span className="text-sm font-bold uppercase tracking-[0.22em] text-blue-400">
                   {project.category}
                 </span>
 
-                <h3 className="mt-4 text-2xl font-black">
-                  {project.title}
-                </h3>
+                <h3 className="mt-4 text-2xl font-black">{project.title}</h3>
 
                 <p className="mt-5 leading-8 text-zinc-400">
                   {project.description}
@@ -111,16 +116,18 @@ export default function Portfolio() {
                 >
                   Solicitar orçamento →
                 </a>
-
               </div>
-
-            </div>
-
+            </article>
           ))}
-
         </div>
-
       </div>
+
+      <Lightbox
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        index={index}
+        slides={slides}
+      />
     </section>
   );
 }
