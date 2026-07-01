@@ -13,7 +13,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[92vh] overflow-hidden bg-black text-white md:min-h-screen">
+    <section className="relative min-h-[88vh] overflow-hidden bg-black text-white md:min-h-screen">
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-30"
         src="/videos/hero.mp4"
@@ -25,21 +25,27 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/65 to-black" />
 
-      <div className="relative z-10 mx-auto flex min-h-[92vh] max-w-7xl flex-col justify-end px-5 pb-7 pt-24 md:min-h-screen md:px-16 md:pb-14 md:pt-32">
+      <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-5 pb-6 pt-22 md:min-h-screen md:px-16 md:pb-14 md:pt-32">
         <div className="max-w-4xl">
-          <p className="mb-4 inline-flex rounded-full border border-blue-500/50 bg-blue-500/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-blue-400 md:text-xs md:tracking-[0.28em]">
+          <p className="mb-4 inline-flex rounded-full border border-blue-500/50 bg-blue-500/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-blue-400 md:text-xs md:tracking-[0.28em]">
             Desde 2017 • Comunicação Visual
           </p>
 
-          <h1 className="max-w-4xl text-[2.2rem] font-black leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl">
+          <h1 className="max-w-4xl text-[1.95rem] font-black leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl">
             Instalação técnica em comunicação visual para empresas.
           </h1>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-300 md:text-2xl md:leading-10">
-            Fachadas comerciais, ACM, letras caixa, adesivação, painéis,
-            eventos e trabalhos em altura executados com segurança, precisão e
-            acabamento profissional.
-          </p>
+          <div className="mt-5 max-w-2xl space-y-3 text-base leading-7 text-zinc-300 md:text-2xl md:leading-10">
+            <p>
+              Especialistas em fachadas comerciais, ACM, letras caixa,
+              adesivação, painéis e eventos.
+            </p>
+
+            <p>
+              Execução segura, precisa e profissional, inclusive em trabalhos em
+              altura com acesso por corda.
+            </p>
+          </div>
 
           <div className="mt-5 grid gap-2 text-sm font-bold text-zinc-200 sm:grid-cols-3 md:text-base">
             <span>✓ IRATA</span>
@@ -64,7 +70,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-3 md:mt-9 md:grid-cols-4 md:gap-4">
+        <div className="mt-5 grid grid-cols-2 gap-3 md:mt-9 md:grid-cols-4 md:gap-4">
           {stats.map(([title, text]) => (
             <div
               key={title}
