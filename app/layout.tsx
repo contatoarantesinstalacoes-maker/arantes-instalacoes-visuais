@@ -1,3 +1,4 @@
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -86,13 +87,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body className={`${inter.className} bg-black text-white antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-        {children}
-      </body>
+     <body className={`${inter.className} bg-black text-white antialiased`}>
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+  />
+
+  {children}
+
+  <GoogleTagManager gtmId="GTM-KR2LG425" />
+</body>
     </html>
   );
 }
