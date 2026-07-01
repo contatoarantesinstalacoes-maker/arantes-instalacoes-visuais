@@ -9,12 +9,16 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://arantesvisual.com.br"),
-  title: "Arantes Instalações Visuais | Comunicação Visual Corporativa",
+  title: {
+    default: "Arantes Visual | Comunicação Visual, Fachadas, ACM e Trabalhos em Altura",
+    template: "%s | Arantes Visual",
+  },
   description:
-    "Especialistas em fachadas, ACM, letras caixa, adesivação, painéis, eventos e trabalhos em altura para empresas.",
+    "Instalação técnica em comunicação visual para empresas: fachadas comerciais, ACM, letras caixa, adesivação, painéis, eventos e trabalhos em altura em São Paulo e todo o Brasil sob consulta.",
   keywords: [
     "comunicação visual",
-    "fachadas",
+    "fachadas comerciais",
+    "instalação de fachada",
     "ACM",
     "letras caixa",
     "adesivação",
@@ -22,15 +26,57 @@ export const metadata: Metadata = {
     "IRATA",
     "São Paulo",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Arantes Instalações Visuais",
+    title: "Arantes Visual | Comunicação Visual Corporativa",
     description:
-      "Instalação profissional de comunicação visual para empresas.",
+      "Fachadas, ACM, letras caixa, adesivação, eventos e trabalhos em altura para empresas.",
     url: "https://arantesvisual.com.br",
-    siteName: "Arantes Instalações Visuais",
+    siteName: "Arantes Visual",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/images/portfolio1.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Arantes Visual - Comunicação Visual Corporativa",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arantes Visual | Comunicação Visual Corporativa",
+    description:
+      "Instalação técnica em comunicação visual para empresas em São Paulo e todo o Brasil sob consulta.",
+    images: ["/images/portfolio1.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Arantes Instalações Visuais",
+  alternateName: "Arantes Visual",
+  url: "https://arantesvisual.com.br",
+  telephone: "+55 11 93207-2394",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "São Paulo",
+    addressRegion: "SP",
+    addressCountry: "BR",
+  },
+  areaServed: ["São Paulo", "Grande São Paulo", "Brasil"],
+  priceRange: "$$",
+  description:
+    "Empresa especializada em instalação técnica de comunicação visual, fachadas, ACM, letras caixa, adesivação, eventos e trabalhos em altura.",
+  sameAs: ["https://www.instagram.com/arantesvisual"],
 };
 
 export default function RootLayout({
@@ -41,6 +87,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className={`${inter.className} bg-black text-white antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
         {children}
       </body>
     </html>
