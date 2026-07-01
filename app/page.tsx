@@ -1,3 +1,4 @@
+import FAQ from "../components/sections/FAQ";
 import Testimonials from "../components/sections/Testimonials";
 import Clients from "@/components/sections/Clients";
 import WhatsAppButton from "../components/sections/WhatsAppButton";
@@ -21,6 +22,7 @@ export default function Home() {
   <Portfolio />
   <Process />
   <Testimonials />
+  <FAQ />
   <CTA />
   <Footer />
   <WhatsAppButton />
