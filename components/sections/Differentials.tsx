@@ -1,57 +1,66 @@
-const items = [
+const differentials = [
   {
-    title: "Execução técnica",
-    text: "Instalações realizadas com planejamento, alinhamento, fixação adequada e foco em acabamento profissional.",
+    title: "Equipe Especializada",
+    text: "Profissionais experientes em instalação de comunicação visual e montagem técnica.",
   },
   {
-    title: "Projetos corporativos",
-    text: "Experiência em comunicação visual para feiras, eventos, estandes, fachadas, empresas e grandes marcas.",
+    title: "Execução em Altura",
+    text: "Projetos realizados com acesso por cordas (IRATA) para locais de difícil acesso.",
   },
   {
-    title: "Trabalho em altura",
-    text: "Capacidade para atuar em instalações complexas, incluindo fachadas, estruturas elevadas e projetos especiais.",
+    title: "Acabamento Profissional",
+    text: "Cada instalação é finalizada com alinhamento, limpeza e atenção aos detalhes.",
   },
   {
-    title: "Atendimento nacional",
-    text: "Atendemos São Paulo e projetos em outras regiões mediante orçamento, logística e planejamento de execução.",
+    title: "Atendimento Corporativo",
+    text: "Experiência em projetos para empresas, indústrias, hospitais, feiras e grandes marcas.",
   },
   {
-    title: "Equipe e parceiros",
-    text: "Estrutura preparada para montar equipe conforme o porte do projeto, mantendo padrão de entrega e responsabilidade.",
+    title: "Cumprimento de Prazo",
+    text: "Organização e planejamento para entregar cada projeto dentro do cronograma.",
   },
   {
-    title: "Foco em contratos maiores",
-    text: "Atuação voltada para empresas que precisam de qualidade, previsibilidade, segurança e acabamento de alto padrão.",
+    title: "Segurança em Primeiro Lugar",
+    text: "Execução com equipamentos certificados e procedimentos voltados à segurança da equipe e do cliente.",
   },
 ];
 
 export default function Differentials() {
   return (
-    <section className="bg-[#050505] px-6 py-24 md:px-16">
+    <section className="bg-black px-6 py-24 md:px-16">
       <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-blue-500">
+        <div className="text-center">
+          <span className="rounded-full border border-blue-500/50 bg-blue-500/10 px-5 py-3 text-xs font-black uppercase tracking-[0.32em] text-blue-400">
             Diferenciais
-          </p>
+          </span>
 
-          <h2 className="mt-4 text-4xl font-black leading-tight md:text-5xl">
-            Estrutura para executar projetos visuais com padrão corporativo.
+          <h2 className="mt-8 text-4xl font-black text-white md:text-6xl">
+            Por que escolher a Arantes Visual?
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-zinc-400">
-            A Arantes Instalações Visuais atua para empresas que precisam de execução
-            confiável, acabamento técnico e capacidade para projetos de maior porte.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400 md:text-xl">
+            Mais do que instalar, entregamos confiança, organização,
+            responsabilidade e acabamento de alto padrão.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((item) => (
+        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {differentials.map((item) => (
             <div
               key={item.title}
-              className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition hover:border-blue-500/60 hover:bg-white/[0.07]"
+              className="rounded-[30px] border border-white/10 bg-zinc-950 p-8 transition duration-300 hover:-translate-y-2 hover:border-blue-500 hover:bg-blue-500/10"
             >
-              <h3 className="text-xl font-bold">{item.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-zinc-400">{item.text}</p>
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-2xl text-white">
+                ✓
+              </div>
+
+              <h3 className="text-2xl font-black text-white">
+                {item.title}
+              </h3>
+
+              <p className="mt-4 leading-8 text-zinc-400">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
