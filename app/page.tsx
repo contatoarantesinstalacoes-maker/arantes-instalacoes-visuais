@@ -1,3 +1,4 @@
+import Testimonials from "../components/sections/Testimonials";
 import Clients from "@/components/sections/Clients";
 import WhatsAppButton from "../components/sections/WhatsAppButton";
 import Navbar from "../components/sections/Navbar";
@@ -19,6 +20,7 @@ export default function Home() {
   <Services />
   <Portfolio />
   <Process />
+  <Testimonials />
   <CTA />
   <Footer />
   <WhatsAppButton />
