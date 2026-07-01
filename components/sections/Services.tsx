@@ -1,95 +1,85 @@
 const services = [
   {
     title: "Fachadas Comerciais",
-    description:
-      "Instalação completa de fachadas comerciais com acabamento preciso, segurança e valorização da identidade da empresa.",
+    text: "Instalação de fachadas para empresas, lojas, indústrias, clínicas e franquias.",
   },
   {
     title: "Letras Caixa",
-    description:
-      "Instalação de letras caixa em ACM, inox, galvanizado e acrílico para empresas, clínicas, hospitais e franquias.",
+    text: "Instalação de letras caixa em ACM, inox, galvanizado e acrílico com acabamento profissional.",
   },
   {
     title: "Revestimento em ACM",
-    description:
-      "Execução técnica de revestimentos em ACM para fachadas, pórticos, totens e projetos corporativos.",
+    text: "Execução técnica de revestimentos, painéis e estruturas em ACM para ambientes comerciais.",
   },
   {
     title: "Adesivação",
-    description:
-      "Aplicação de adesivos em vitrines, paredes, veículos, ambientes corporativos e grandes formatos.",
+    text: "Aplicação de adesivos, envelopamento, comunicação interna e grandes formatos.",
   },
   {
-    title: "Painéis • Totens • Eventos",
-    description:
-      "Montagem de estruturas promocionais, painéis, estandes e comunicação visual para eventos corporativos.",
+    title: "Painéis e Totens",
+    text: "Instalação de painéis, totens, placas e estruturas visuais para empresas e eventos.",
+  },
+  {
+    title: "Eventos e Estandes",
+    text: "Montagem e instalação de comunicação visual para feiras, eventos e ativações de marca.",
   },
   {
     title: "Trabalhos em Altura",
-    description:
-      "Equipe qualificada para instalações em altura utilizando técnicas de acesso por cordas com foco em segurança.",
+    text: "Execução com acesso por cordas para locais de difícil acesso, fachadas e estruturas elevadas.",
+  },
+  {
+    title: "Atendimento Corporativo",
+    text: "Execução para empresas, indústrias, construtoras, franquias e redes nacionais.",
   },
 ];
 
 export default function Services() {
   return (
-    <section
-      id="servicos"
-      className="bg-black px-6 py-28 md:px-16"
-    >
+    <section id="servicos" className="bg-[#050505] px-6 py-24 md:px-16">
       <div className="mx-auto max-w-7xl">
-
-        <div className="max-w-3xl">
-
-          <span className="rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-blue-400">
-            SERVIÇOS
+        <div className="max-w-4xl">
+          <span className="rounded-full border border-blue-500/50 bg-blue-500/10 px-5 py-3 text-xs font-black uppercase tracking-[0.32em] text-blue-400">
+            Serviços
           </span>
 
-          <h2 className="mt-6 text-4xl font-black leading-tight md:text-6xl">
+          <h2 className="mt-8 text-4xl font-black leading-tight text-white md:text-6xl">
             Soluções completas em comunicação visual.
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-zinc-300">
-            Executamos projetos para empresas, indústrias, hospitais, franquias,
-            centros comerciais, eventos e grandes marcas.
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-400 md:text-xl md:leading-9">
+            Executamos projetos para empresas que precisam de instalação segura,
+            acabamento profissional e capacidade técnica para projetos de
+            pequeno, médio e grande porte.
           </p>
-
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-
+        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service) => (
-
-            <div
+            <article
               key={service.title}
-              className="group rounded-3xl border border-white/10 bg-zinc-950 p-8 transition duration-300 hover:-translate-y-2 hover:border-blue-500 hover:bg-zinc-900"
+              className="group rounded-[32px] border border-white/10 bg-white/[0.04] p-7 transition duration-300 hover:-translate-y-2 hover:border-blue-500/70 hover:bg-blue-500/10"
             >
-
-              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-2xl font-black">
+              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-3xl font-black text-white transition group-hover:scale-110">
                 +
               </div>
 
-              <h3 className="text-2xl font-black">
+              <h3 className="text-2xl font-black text-white">
                 {service.title}
               </h3>
 
-              <p className="mt-5 leading-8 text-zinc-400">
-                {service.description}
+              <p className="mt-5 text-base leading-8 text-zinc-400">
+                {service.text}
               </p>
 
               <a
-                href="https://wa.me/5511932072394"
-                className="mt-8 inline-flex font-bold text-blue-400 transition group-hover:text-blue-300"
+                href="https://wa.me/5511932072394?text=Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento."
+                className="mt-7 inline-flex font-black text-blue-400 transition hover:text-blue-300"
               >
                 Solicitar orçamento →
               </a>
-
-            </div>
-
+            </article>
           ))}
-
         </div>
-
       </div>
     </section>
   );
