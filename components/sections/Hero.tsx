@@ -1,3 +1,5 @@
+"use client";
+
 const phone = "5511932072394";
 
 const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
@@ -11,7 +13,21 @@ const stats = [
   ["100%", "foco em execução"],
 ];
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 export default function Hero() {
+  const handleWhatsAppClick = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "whatsapp_click", {
+        button_location: "hero",
+      });
+    }
+  };
+
   return (
     <section className="relative min-h-[88vh] overflow-hidden bg-black text-white md:min-h-screen">
       <video
@@ -56,6 +72,7 @@ export default function Hero() {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8 md:gap-4">
             <a
               href={whatsappUrl}
+              onClick={handleWhatsAppClick}
               className="rounded-full bg-blue-600 px-7 py-4 text-center text-base font-black text-white shadow-2xl shadow-blue-600/30 transition hover:bg-blue-500 md:px-9 md:py-5 md:text-lg"
             >
               Solicitar orçamento
