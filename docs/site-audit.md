@@ -59,6 +59,16 @@ Data da baseline: 29 de julho de 2026.
 - testes unitários cobrem contrato, HMAC, idempotência, timeout e respostas da
   dependência; Playwright cobre formulário, fallback, consentimento, UTMs,
   acessibilidade e viewports.
+- em 30 de julho de 2026, o deployment de preview do projeto Vercel
+  `arantes-instalacoes-visuais-yae1` recebeu uma submissão real de homologação:
+  o Arantes OS persistiu uma ingestão concluída, um cliente e um lead no tenant
+  esperado, com origem `website`, landing page, UTMs, consentimento e
+  responsabilidade da Aline;
+- o replay controlado da mesma submissão retornou `200` e não criou um segundo
+  cliente nem um segundo lead;
+- as três credenciais server-side estão criptografadas nos ambientes Preview e
+  Production e a inspeção automatizada do bundle confirmou que os nomes e
+  valores não chegam ao navegador.
 
 ## Evidências da unidade A.2
 
@@ -90,6 +100,4 @@ Data da baseline: 29 de julho de 2026.
 ## Limites
 
 Não serão inventadas credenciais, IDs de publicidade, alegações comerciais,
-endereço completo, política jurídica ou configuração externa do GTM. A A.4 não
-pode ser integrada nem ativada até o endpoint do Arantes OS e a credencial da
-integração estarem comprovadamente disponíveis.
+endereço completo, política jurídica ou configuração externa do GTM.
