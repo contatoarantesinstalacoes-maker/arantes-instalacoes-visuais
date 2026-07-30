@@ -39,6 +39,19 @@ Data da baseline: 29 de julho de 2026.
 | baixa | sitemap altera `lastModified` a cada build | `new Date()` em `app/sitemap.ts` | A.3 |
 | baixa | ano do rodapé é fixo | conteúdo hardcoded | A.3 |
 
+## Evidências da unidade A.2
+
+- o GTM só é renderizado depois de consentimento explícito;
+- recusa e reabertura de preferências permanecem disponíveis;
+- imagens públicas são redimensionadas e regravadas sem EXIF/GPS;
+- vídeos do portfólio são entregues em H.264 e sem preload antecipado;
+- o hero móvel usa imagem otimizada e não solicita vídeo de fundo.
+- cache explícito de 24 horas com `stale-while-revalidate` de sete dias para
+  imagens e vídeos;
+- Lighthouse local de produção após A.2: 580 KiB transferidos, TBT de 1.400 ms,
+  boas práticas 100 e SEO 100. O score sintético de performance foi 60 e não é
+  comparável diretamente ao baseline remoto por usar ambiente diferente.
+
 ## Limites
 
 Não serão inventados endpoint do Arantes OS, credenciais, IDs de publicidade,

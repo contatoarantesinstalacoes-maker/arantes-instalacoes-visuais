@@ -58,6 +58,34 @@ test("exposes security headers", async ({ request }) => {
   expect(response.headers()["x-powered-by"]).toBeUndefined();
 });
 
+test("does not load analytics before consent", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(
+    page.getByRole("region", { name: "Preferências de cookies" }),
+  ).toBeVisible();
+  await expect(
+    page.locator('script[src*="googletagmanager.com"]'),
+  ).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Recusar" }).click();
+  await expect(
+    page.getByRole("button", { name: "Preferências de cookies" }),
+  ).toBeVisible();
+  await expect(
+    page.locator('script[src*="googletagmanager.com"]'),
+  ).toHaveCount(0);
+});
+
+test("loads analytics only after explicit consent", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Aceitar" }).click();
+
+  await expect(
+    page.locator('script[src*="googletagmanager.com"]'),
+  ).toHaveCount(1);
+});
+
 test("keeps mobile navigation and layout usable", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("mobile"));
 
