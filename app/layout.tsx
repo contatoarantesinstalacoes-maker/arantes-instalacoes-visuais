@@ -1,4 +1,4 @@
-import { GoogleTagManager } from "@next/third-parties/google";
+import AnalyticsConsent from "@/components/analytics/AnalyticsConsent";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -95,7 +95,7 @@ export default function RootLayout({
 
   {children}
 
-  <GoogleTagManager gtmId="GTM-KR2LG425" />
+  <AnalyticsConsent gtmId="GTM-KR2LG425" />
 </body>
     </html>
   );

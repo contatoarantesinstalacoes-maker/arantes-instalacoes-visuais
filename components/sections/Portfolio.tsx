@@ -89,7 +89,7 @@ export default function Portfolio() {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                   />
                 )}

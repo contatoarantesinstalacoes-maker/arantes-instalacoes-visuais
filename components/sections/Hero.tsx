@@ -1,6 +1,7 @@
 "use client";
 
 import { trackWhatsAppClick } from "@/lib/gtm";
+import Image from "next/image";
 
 const phone = "5511932072394";
 
@@ -18,14 +19,29 @@ const stats = [
 export default function Hero() {
   return (
     <section className="relative min-h-[88vh] overflow-hidden bg-black text-white md:min-h-screen">
+      <Image
+        src="/images/hero.jpg"
+        alt=""
+        fill
+        preload
+        sizes="100vw"
+        className="object-cover opacity-30"
+      />
       <video
-        className="absolute inset-0 h-full w-full object-cover opacity-30"
-        src="/videos/hero.mp4"
+        aria-hidden="true"
+        className="absolute inset-0 hidden h-full w-full object-cover opacity-30 md:block"
         autoPlay
         muted
         loop
         playsInline
-      />
+        poster="/images/hero.jpg"
+      >
+        <source
+          src="/videos/hero.mp4"
+          type="video/mp4"
+          media="(min-width: 768px)"
+        />
+      </video>
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/65 to-black" />
 
