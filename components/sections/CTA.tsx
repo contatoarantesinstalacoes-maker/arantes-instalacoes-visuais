@@ -1,26 +1,14 @@
 "use client";
 
+import { trackWhatsAppClick } from "@/lib/gtm";
+
 const phone = "5511932072394";
 
 const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(
   "Olá! Gostaria de solicitar um orçamento para meu projeto de comunicação visual."
 )}`;
 
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
-
 export default function CTA() {
-  const handleWhatsAppClick = () => {
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "whatsapp_click", {
-        button_location: "cta",
-      });
-    }
-  };
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#0b0b0b] to-black px-6 py-28 md:px-16">
       <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[140px]" />
@@ -43,7 +31,9 @@ export default function CTA() {
         <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:justify-center">
           <a
             href={whatsapp}
-            onClick={handleWhatsAppClick}
+            onClick={() => trackWhatsAppClick("cta")}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-blue-600 px-10 py-5 text-lg font-black text-white shadow-2xl shadow-blue-600/30 transition hover:scale-105 hover:bg-blue-500"
           >
             Solicitar orçamento
