@@ -17,13 +17,16 @@ npm install
 npm run dev
 npm run lint
 npm run typecheck
+npm run test:unit
 npm run test:e2e
 npm run build
+npm run test:bundle
 npm run test:production-gate
 ```
 
-O Production Gate executa auditoria de dependências, lint, typecheck, E2E e
-build. O mesmo gate é obrigatório em pull requests e pushes para `main`.
+O Production Gate executa auditoria de dependências, lint, typecheck, testes
+unitários, E2E, build e inspeção do bundle do navegador. O mesmo gate é
+obrigatório em pull requests e pushes para `main`.
 
 ## Analytics e privacidade
 
@@ -36,6 +39,15 @@ autorizado.
 
 - auditoria técnica: `docs/site-audit.md`;
 - fila canônica: `docs/execution-queue.md`;
-- leads atualmente entram pelo WhatsApp;
-- a integração direta com o Arantes OS permanece bloqueada até existir contrato
-  autenticado, endpoint, consentimento aprovado e ambiente de teste.
+- operação da integração de leads: `docs/lead-integration-operations.md`;
+- solicitações do formulário passam pela rota server-side `/api/leads`;
+- o WhatsApp permanece disponível como fallback explícito;
+- a integração exige, somente no servidor,
+  `ARANTES_OS_PUBLIC_LEADS_URL`, `ARANTES_OS_INTEGRATION_KEY` e
+  `ARANTES_OS_HMAC_SECRET`;
+- as três variáveis estão configuradas como segredos criptografados nos
+  ambientes Preview e Production do projeto Vercel
+  `arantes-instalacoes-visuais-yae1`;
+- a integração foi homologada no preview em 30 de julho de 2026 com criação
+  real, reconciliação no tenant correto e replay idempotente sem duplicar
+  cliente ou lead.

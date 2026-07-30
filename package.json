@@ -9,8 +9,10 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
+    "test:unit": "node --experimental-strip-types --test tests/unit/*.test.ts",
     "test:e2e": "playwright test",
-    "test:production-gate": "npm audit --audit-level=high && npm run lint && npm run typecheck && npm run test:e2e && npm run build"
+    "test:bundle": "node scripts/assert-client-bundle-secrets.mjs",
+    "test:production-gate": "npm audit --audit-level=high && npm run lint && npm run typecheck && npm run test:unit && npm run test:e2e && npm run build && npm run test:bundle"
   },
   "dependencies": {
     "@next/third-parties": "16.2.12",

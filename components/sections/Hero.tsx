@@ -1,13 +1,5 @@
-"use client";
-
-import { trackWhatsAppClick } from "@/lib/gtm";
+import LeadFormLink from "@/components/leads/LeadFormLink";
 import Image from "next/image";
-
-const phone = "5511932072394";
-
-const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(
-  "Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento para instalação de comunicação visual."
-)}`;
 
 const stats = [
   ["8+", "anos de experiência"],
@@ -74,13 +66,12 @@ export default function Hero() {
           </div>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8 md:gap-4">
-            <a
-              href={whatsappUrl}
-              onClick={() => trackWhatsAppClick("hero")}
+            <LeadFormLink
+              formLocation="hero"
               className="rounded-full bg-blue-600 px-7 py-4 text-center text-base font-black text-white shadow-2xl shadow-blue-600/30 transition hover:bg-blue-500 md:px-9 md:py-5 md:text-lg"
             >
               Solicitar orçamento
-            </a>
+            </LeadFormLink>
 
             <a
               href="#portfolio"

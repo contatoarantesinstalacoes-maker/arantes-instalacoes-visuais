@@ -39,6 +39,37 @@ Data da baseline: 29 de julho de 2026.
 | baixa | sitemap altera `lastModified` a cada build | `new Date()` em `app/sitemap.ts` | A.3 |
 | baixa | ano do rodapé é fixo | conteúdo hardcoded | A.3 |
 
+## Evidências da unidade A.4
+
+- todos os CTAs de orçamento levam ao formulário integrado e o WhatsApp
+  permanece disponível como fallback;
+- `/api/leads` é uma rota Node.js server-side e nenhuma credencial usa prefixo
+  `NEXT_PUBLIC_`;
+- o tenant não faz parte do contrato aceito pelo site e continua sendo
+  resolvido exclusivamente pela integração no Arantes OS;
+- o payload é normalizado, serializado uma única vez e assinado com HMAC
+  SHA-256 sobre os bytes exatos;
+- timestamp, assinatura, corpo e chave idempotente permanecem idênticos nos
+  retries limitados a `429` e `503`;
+- origem `website`, landing page, UTMs e consentimento versionado são
+  persistidos no contrato enviado;
+- nenhum log contém credencial, assinatura, corpo integral ou dado pessoal;
+- eventos de conversão de lead só entram no `dataLayer` após consentimento e
+  confirmação `200` ou `201`;
+- testes unitários cobrem contrato, HMAC, idempotência, timeout e respostas da
+  dependência; Playwright cobre formulário, fallback, consentimento, UTMs,
+  acessibilidade e viewports.
+- em 30 de julho de 2026, o deployment de preview do projeto Vercel
+  `arantes-instalacoes-visuais-yae1` recebeu uma submissão real de homologação:
+  o Arantes OS persistiu uma ingestão concluída, um cliente e um lead no tenant
+  esperado, com origem `website`, landing page, UTMs, consentimento e
+  responsabilidade da Aline;
+- o replay controlado da mesma submissão retornou `200` e não criou um segundo
+  cliente nem um segundo lead;
+- as três credenciais server-side estão criptografadas nos ambientes Preview e
+  Production e a inspeção automatizada do bundle confirmou que os nomes e
+  valores não chegam ao navegador.
+
 ## Evidências da unidade A.2
 
 - o GTM só é renderizado depois de consentimento explícito;
@@ -68,6 +99,5 @@ Data da baseline: 29 de julho de 2026.
 
 ## Limites
 
-Não serão inventados endpoint do Arantes OS, credenciais, IDs de publicidade,
-alegações comerciais, endereço completo, política jurídica ou configuração
-externa do GTM.
+Não serão inventadas credenciais, IDs de publicidade, alegações comerciais,
+endereço completo, política jurídica ou configuração externa do GTM.

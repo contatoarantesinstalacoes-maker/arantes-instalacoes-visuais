@@ -1,4 +1,4 @@
-import WhatsAppLink from "@/components/ui/WhatsAppLink";
+import LeadFormLink from "@/components/leads/LeadFormLink";
 
 const services = [
   {
@@ -73,15 +73,13 @@ export default function Services() {
                 {service.text}
               </p>
 
-              <WhatsAppLink
-                href={`https://wa.me/5511932072394?text=${encodeURIComponent(
-                  `Olá! Quero solicitar um orçamento para ${service.title}.`,
-                )}`}
-                location={`service_${service.title.toLowerCase().replaceAll(" ", "_")}`}
+              <LeadFormLink
+                formLocation={`service_${service.title.toLowerCase().replaceAll(" ", "_")}`}
+                service={service.title}
                 className="mt-7 inline-flex font-black text-blue-400 transition hover:text-blue-300"
               >
                 Solicitar orçamento →
-              </WhatsAppLink>
+              </LeadFormLink>
             </article>
           ))}
         </div>

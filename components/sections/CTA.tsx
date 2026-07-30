@@ -1,16 +1,11 @@
-"use client";
-
-import { trackWhatsAppClick } from "@/lib/gtm";
-
-const phone = "5511932072394";
-
-const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(
-  "Olá! Gostaria de solicitar um orçamento para meu projeto de comunicação visual."
-)}`;
+import LeadCaptureForm from "@/components/leads/LeadCaptureForm";
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#0b0b0b] to-black px-6 py-28 md:px-16">
+    <section
+      id="orcamento"
+      className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-[#0b0b0b] to-black px-6 py-28 md:px-16"
+    >
       <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[140px]" />
 
       <div className="relative mx-auto max-w-5xl rounded-[40px] border border-white/10 bg-zinc-950/80 p-8 text-center backdrop-blur md:p-16">
@@ -28,24 +23,7 @@ export default function CTA() {
           segurança, organização e acabamento profissional.
         </p>
 
-        <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:justify-center">
-          <a
-            href={whatsapp}
-            onClick={() => trackWhatsAppClick("cta")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-blue-600 px-10 py-5 text-lg font-black text-white shadow-2xl shadow-blue-600/30 transition hover:scale-105 hover:bg-blue-500"
-          >
-            Solicitar orçamento
-          </a>
-
-          <a
-            href="#portfolio"
-            className="rounded-full border border-white/20 px-10 py-5 text-lg font-black transition hover:border-blue-500 hover:bg-white hover:text-black"
-          >
-            Ver projetos
-          </a>
-        </div>
+        <LeadCaptureForm />
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
