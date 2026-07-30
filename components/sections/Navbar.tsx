@@ -1,14 +1,8 @@
 "use client";
 
-import { trackWhatsAppClick } from "@/lib/gtm";
+import LeadFormLink from "@/components/leads/LeadFormLink";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const phone = "5511932072394";
-
-const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(
-  "Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento."
-)}`;
 
 const links = [
   { label: "Sobre", href: "#about" },
@@ -69,15 +63,12 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a
-          href={whatsapp}
-          onClick={() => trackWhatsAppClick("navbar")}
-          target="_blank"
-          rel="noopener noreferrer"
+        <LeadFormLink
+          formLocation="navbar"
           className="hidden rounded-full bg-blue-600 px-6 py-3 text-sm font-black text-white shadow-xl shadow-blue-600/20 transition hover:bg-blue-500 lg:block"
         >
           Solicitar orçamento
-        </a>
+        </LeadFormLink>
 
         <button
           onClick={() => setOpen((current) => !current)}
@@ -107,15 +98,13 @@ export default function Navbar() {
               </a>
             ))}
 
-            <a
-              href={whatsapp}
-              onClick={() => trackWhatsAppClick("navbar_mobile")}
-              target="_blank"
-              rel="noopener noreferrer"
+            <LeadFormLink
+              formLocation="navbar_mobile"
+              onNavigate={() => setOpen(false)}
               className="mt-6 rounded-full bg-blue-600 px-6 py-5 text-center text-lg font-black text-white"
             >
               Solicitar orçamento
-            </a>
+            </LeadFormLink>
           </nav>
         </div>
       )}

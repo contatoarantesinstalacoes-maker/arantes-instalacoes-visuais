@@ -1,43 +1,37 @@
 "use client";
 
 import { GoogleTagManager } from "@next/third-parties/google";
+import {
+  ANALYTICS_CONSENT_EVENT,
+  ANALYTICS_CONSENT_STORAGE_KEY,
+  getAnalyticsConsent,
+  type AnalyticsConsent,
+} from "@/lib/consent";
 import { useSyncExternalStore } from "react";
-
-const STORAGE_KEY = "arantes-analytics-consent-v1";
-const CONSENT_EVENT = "arantes-analytics-consent";
-
-type Consent = "accepted" | "rejected" | null;
-
-function getConsentSnapshot(): Consent {
-  const savedConsent = window.localStorage.getItem(STORAGE_KEY);
-  return savedConsent === "accepted" || savedConsent === "rejected"
-    ? savedConsent
-    : null;
-}
 
 function subscribeToConsent(onStoreChange: () => void) {
   window.addEventListener("storage", onStoreChange);
-  window.addEventListener(CONSENT_EVENT, onStoreChange);
+  window.addEventListener(ANALYTICS_CONSENT_EVENT, onStoreChange);
   return () => {
     window.removeEventListener("storage", onStoreChange);
-    window.removeEventListener(CONSENT_EVENT, onStoreChange);
+    window.removeEventListener(ANALYTICS_CONSENT_EVENT, onStoreChange);
   };
 }
 
 export default function AnalyticsConsent({ gtmId }: { gtmId: string }) {
   const consent = useSyncExternalStore(
     subscribeToConsent,
-    getConsentSnapshot,
+    getAnalyticsConsent,
     () => null,
   );
 
-  function saveConsent(value: Exclude<Consent, null>) {
-    window.localStorage.setItem(STORAGE_KEY, value);
-    window.dispatchEvent(new Event(CONSENT_EVENT));
+  function saveConsent(value: Exclude<AnalyticsConsent, null>) {
+    window.localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, value);
+    window.dispatchEvent(new Event(ANALYTICS_CONSENT_EVENT));
   }
 
   function reopenPreferences() {
-    window.localStorage.removeItem(STORAGE_KEY);
+    window.localStorage.removeItem(ANALYTICS_CONSENT_STORAGE_KEY);
     window.location.reload();
   }
 

@@ -126,7 +126,7 @@ test("keeps mobile navigation and layout usable", async ({ page }, testInfo) => 
   expect(hasHorizontalOverflow).toBe(false);
 });
 
-test("records service, footer and portfolio conversions in one dataLayer", async ({
+test("prefills service and preserves existing WhatsApp and portfolio events", async ({
   page,
 }) => {
   await page.goto("/");
@@ -142,6 +142,7 @@ test("records service, footer and portfolio conversions in one dataLayer", async
     .getByRole("link", { name: "Solicitar orçamento →" })
     .first()
     .click();
+  await expect(page.getByLabel("Serviço")).toHaveValue("Fachadas Comerciais");
   await page
     .locator("footer")
     .getByRole("link", { name: "Falar pelo WhatsApp" })
@@ -159,10 +160,6 @@ test("records service, footer and portfolio conversions in one dataLayer", async
 
   expect(events).toEqual(
     expect.arrayContaining([
-      expect.objectContaining({
-        event: "whatsapp_click",
-        button_location: "service_fachadas_comerciais",
-      }),
       expect.objectContaining({
         event: "whatsapp_click",
         button_location: "footer_primary",
