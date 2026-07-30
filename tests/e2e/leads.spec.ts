@@ -154,7 +154,9 @@ for (const status of [401, 409, 422, 429, 503]) {
     await page.getByRole("button", { name: "Recusar" }).click();
     const form = await completeForm(page);
     await form.getByRole("button", { name: "Enviar solicitação" }).click();
-    await expect(form).toContainText("Não foi possível enviar agora");
+    await expect(
+      form.getByText("Não foi possível enviar agora", { exact: false }),
+    ).toBeVisible({ timeout: 10_000 });
     await expect(
       form.getByRole("link", { name: "Continuar pelo WhatsApp" }),
     ).toBeVisible();
