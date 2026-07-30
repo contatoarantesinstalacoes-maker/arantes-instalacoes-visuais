@@ -52,6 +52,20 @@ Data da baseline: 29 de julho de 2026.
   boas práticas 100 e SEO 100. O score sintético de performance foi 60 e não é
   comparável diretamente ao baseline remoto por usar ambiente diferente.
 
+## Evidências da unidade A.3
+
+- diálogo do portfólio possui nome acessível, foco inicial e restaurado, trap de
+  foco, fechamento por `Escape` e navegação por setas;
+- menu móvel fecha por `Escape`;
+- Open Graph usa imagem real 1200×630, e FAQ possui dados estruturados;
+- todo CTA de WhatsApp e abertura de portfólio envia evento pelo `dataLayer`;
+- contraste do rodapé foi corrigido e o ano deixou de ser fixo;
+- sitemap não publica data artificial a cada build;
+- cinco componentes e uma dependência sem uso foram removidos;
+- regressão automatizada usa Axe, teclado, desktop e mobile.
+- Content Security Policy restringe scripts, conexões, mídia, frames e
+  formulários às origens necessárias.
+
 ## Limites
 
 Não serão inventados endpoint do Arantes OS, credenciais, IDs de publicidade,

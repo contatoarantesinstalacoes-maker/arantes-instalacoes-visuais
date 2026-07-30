@@ -22,6 +22,16 @@ test("ships images without EXIF and within the delivery dimensions", async () =>
   }
 });
 
+test("ships the declared Open Graph image at exactly 1200 by 630", async () => {
+  const metadata = await sharp(
+    path.join(imagesDirectory, "og-arantes-visual.jpg"),
+  ).metadata();
+
+  expect(metadata.width).toBe(1200);
+  expect(metadata.height).toBe(630);
+  expect(metadata.exif).toBeUndefined();
+});
+
 test("ships portfolio videos as H.264 within the media budget", async () => {
   const videoNames = (await readdir(videosDirectory))
     .filter((name) => /^video\d+\.mp4$/.test(name))

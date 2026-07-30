@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { trackPortfolioOpen } from "@/lib/gtm";
+import { useEffect, useRef, useState } from "react";
 
 const items = [
   { type: "image", src: "/images/portfolio1.jpg", category: "Estandes", title: "Vitamedic" },
@@ -34,15 +35,86 @@ const items = [
 
 export default function Portfolio() {
   const [active, setActive] = useState<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const openerIndexRef = useRef<number | null>(null);
+  const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useEffect(() => {
-    document.body.style.overflow = active !== null ? "hidden" : "";
+    if (active === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        const openerIndex = openerIndexRef.current;
+        setActive(null);
+        requestAnimationFrame(() => {
+          if (openerIndex !== null) triggerRefs.current[openerIndex]?.focus();
+        });
+      } else if (event.key === "ArrowLeft") {
+        setActive((current) =>
+          current === null
+            ? null
+            : current === 0
+              ? items.length - 1
+              : current - 1,
+        );
+      } else if (event.key === "ArrowRight") {
+        setActive((current) =>
+          current === null
+            ? null
+            : current === items.length - 1
+              ? 0
+              : current + 1,
+        );
+      } else if (event.key === "Tab") {
+        const focusable = Array.from(
+          dialogRef.current?.querySelectorAll<HTMLElement>(
+            'button, a[href], video[controls], [tabindex]:not([tabindex="-1"])',
+          ) ?? [],
+        ).filter(
+          (element) =>
+            !element.hasAttribute("disabled") &&
+            element.getClientRects().length > 0,
+        );
+        const first = focusable[0];
+        const last = focusable.at(-1);
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [active]);
 
   const current = active !== null ? items[active] : null;
+
+  function openItem(index: number) {
+    trackPortfolioOpen(items[index].title);
+    openerIndexRef.current = index;
+    setActive(index);
+  }
+
+  function closeModal() {
+    const openerIndex = openerIndexRef.current;
+    setActive(null);
+    if (openerIndex !== null) {
+      requestAnimationFrame(() => triggerRefs.current[openerIndex]?.focus());
+    }
+  }
 
   return (
     <section id="portfolio" className="bg-black px-6 py-24 md:px-16">
@@ -67,7 +139,12 @@ export default function Portfolio() {
           {items.map((item, index) => (
             <button
               key={`${item.src}-${index}`}
-              onClick={() => setActive(index)}
+              ref={(element) => {
+                triggerRefs.current[index] = element;
+              }}
+              type="button"
+              aria-haspopup="dialog"
+              onClick={() => openItem(index)}
               className={`group overflow-hidden rounded-[32px] border border-white/10 bg-zinc-950 text-left transition duration-500 hover:-translate-y-2 hover:border-blue-500/80 ${
                 index === 0 || index === 1 || index === 6
                   ? "xl:col-span-2"
@@ -122,15 +199,29 @@ export default function Portfolio() {
       </div>
 
       {current && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4">
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="portfolio-dialog-title"
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) closeModal();
+          }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4"
+        >
           <button
-            onClick={() => setActive(null)}
+            ref={closeButtonRef}
+            type="button"
+            aria-label="Fechar projeto"
+            onClick={closeModal}
             className="absolute right-5 top-5 z-[110] rounded-full border border-white/20 bg-white/10 px-5 py-3 text-xl font-black text-white"
           >
             ×
           </button>
 
           <button
+            type="button"
+            aria-label="Projeto anterior"
             onClick={() =>
               setActive((prev) =>
                 prev === null ? null : prev === 0 ? items.length - 1 : prev - 1
@@ -142,6 +233,8 @@ export default function Portfolio() {
           </button>
 
           <button
+            type="button"
+            aria-label="Próximo projeto"
             onClick={() =>
               setActive((prev) =>
                 prev === null ? null : prev === items.length - 1 ? 0 : prev + 1
@@ -178,7 +271,12 @@ export default function Portfolio() {
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-blue-400">
                   {current.category}
                 </p>
-                <h3 className="mt-2 text-2xl font-black">{current.title}</h3>
+                <h3
+                  id="portfolio-dialog-title"
+                  className="mt-2 text-2xl font-black"
+                >
+                  {current.title}
+                </h3>
               </div>
             </div>
           </div>

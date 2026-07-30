@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/portfolio1.jpg",
+        url: "/images/og-arantes-visual.jpg",
         width: 1200,
         height: 630,
         alt: "Arantes Visual - Comunicação Visual Corporativa",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Arantes Visual | Comunicação Visual Corporativa",
     description:
       "Instalação técnica em comunicação visual para empresas em São Paulo e todo o Brasil sob consulta.",
-    images: ["/images/portfolio1.jpg"],
+    images: ["/images/og-arantes-visual.jpg"],
   },
   robots: {
     index: true,
@@ -87,16 +87,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-     <body className={`${inter.className} bg-black text-white antialiased`}>
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-  />
+      <body className={`${inter.className} bg-black text-white antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+          }}
+        />
 
-  {children}
+        {children}
 
-  <AnalyticsConsent gtmId="GTM-KR2LG425" />
-</body>
+        <AnalyticsConsent gtmId="GTM-KR2LG425" />
+      </body>
     </html>
   );
 }
