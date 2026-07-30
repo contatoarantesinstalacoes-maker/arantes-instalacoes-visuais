@@ -1,3 +1,5 @@
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
+
 const phone = "5511932072394";
 
 const whatsapp = `https://wa.me/${phone}`;
@@ -19,12 +21,13 @@ export default function Footer() {
             eventos corporativos e trabalhos em altura com acesso por cordas.
           </p>
 
-          <a
+          <WhatsAppLink
             href={whatsapp}
+            location="footer_primary"
             className="mt-8 inline-flex rounded-full bg-blue-600 px-8 py-4 font-bold transition hover:bg-blue-500"
           >
             Falar pelo WhatsApp
-          </a>
+          </WhatsAppLink>
 
         </div>
 
@@ -68,12 +71,13 @@ export default function Footer() {
 
             <p>WhatsApp</p>
 
-            <a
+            <WhatsAppLink
               href={whatsapp}
+              location="footer_phone"
               className="font-bold text-blue-400 hover:text-blue-300"
             >
               (11) 93207-2394
-            </a>
+            </WhatsAppLink>
 
           </div>
 
@@ -81,10 +85,11 @@ export default function Footer() {
 
       </div>
 
-      <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-zinc-500 md:flex-row">
+      <div className="mx-auto mt-16 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-zinc-400 md:flex-row">
 
         <p>
-          © 2026 Arantes Instalações Visuais. Todos os direitos reservados.
+          © {new Date().getFullYear()} Arantes Instalações Visuais. Todos os
+          direitos reservados.
         </p>
 
         <p>

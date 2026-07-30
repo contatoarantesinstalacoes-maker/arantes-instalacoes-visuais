@@ -1,3 +1,5 @@
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
+
 const services = [
   {
     title: "Fachadas Comerciais",
@@ -71,12 +73,15 @@ export default function Services() {
                 {service.text}
               </p>
 
-              <a
-                href="https://wa.me/5511932072394?text=Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento."
+              <WhatsAppLink
+                href={`https://wa.me/5511932072394?text=${encodeURIComponent(
+                  `Olá! Quero solicitar um orçamento para ${service.title}.`,
+                )}`}
+                location={`service_${service.title.toLowerCase().replaceAll(" ", "_")}`}
                 className="mt-7 inline-flex font-black text-blue-400 transition hover:text-blue-300"
               >
                 Solicitar orçamento →
-              </a>
+              </WhatsAppLink>
             </article>
           ))}
         </div>

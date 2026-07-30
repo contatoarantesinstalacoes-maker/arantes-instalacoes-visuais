@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arantes Instalações Visuais
 
-## Getting Started
+Site institucional e de conversão da Arantes Instalações Visuais, publicado em
+`https://arantesvisual.com.br`.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 com App Router;
+- React 19;
+- Tailwind CSS 4;
+- Playwright e Axe para regressão E2E, responsiva e de acessibilidade.
+
+## Comandos
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm run test:e2e
+npm run build
+npm run test:production-gate
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O Production Gate executa auditoria de dependências, lint, typecheck, E2E e
+build. O mesmo gate é obrigatório em pull requests e pushes para `main`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Analytics e privacidade
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O Google Tag Manager só é carregado após consentimento explícito. Eventos de
+conversão usam o `dataLayer` canônico definido em `lib/gtm.ts`. IDs de Google
+Ads ou Meta Pixel não pertencem ao código e devem ser configurados no container
+autorizado.
 
-## Learn More
+## Operação
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- auditoria técnica: `docs/site-audit.md`;
+- fila canônica: `docs/execution-queue.md`;
+- leads atualmente entram pelo WhatsApp;
+- a integração direta com o Arantes OS permanece bloqueada até existir contrato
+  autenticado, endpoint, consentimento aprovado e ambiente de teste.
