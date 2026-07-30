@@ -181,7 +181,7 @@ test("keeps the full page within mobile, tablet and desktop viewports", async ({
     { width: 1440, height: 900 },
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
     const hasHorizontalOverflow = await page.evaluate(
