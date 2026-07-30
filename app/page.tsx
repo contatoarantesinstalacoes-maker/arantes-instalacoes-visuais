@@ -14,16 +14,24 @@ import WhatsAppButton from "../components/sections/WhatsAppButton";
 export default function Home() {
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only z-[200] rounded bg-white px-4 py-3 text-black focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Pular para o conteúdo
+      </a>
       <Navbar />
-      <Hero />
-      <Clients />
-      <About />
-      <Services />
-      <Portfolio />
-      <Process />
-      <Testimonials />
-      <FAQ />
-      <CTA />
+      <main id="main-content">
+        <Hero />
+        <Clients />
+        <About />
+        <Services />
+        <Portfolio />
+        <Process />
+        <Testimonials />
+        <FAQ />
+        <CTA />
+      </main>
       <Footer />
       <WhatsAppButton />
     </>
