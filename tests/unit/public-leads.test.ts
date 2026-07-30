@@ -57,6 +57,20 @@ test("valida, normaliza e prepara o contrato sem tenant", () => {
   assert.equal(prepared.idempotencyKey, "site:019f-site-submission");
 });
 
+test("preserva DDI explícito de telefone internacional", () => {
+  const withPlus = validateSiteLeadSubmission({
+    ...validInput(),
+    phone: "+1 415 555 2671",
+  });
+  const withInternationalPrefix = validateSiteLeadSubmission({
+    ...validInput(),
+    phone: "001 415 555 2671",
+  });
+
+  assert.equal(withPlus.phone, "+14155552671");
+  assert.equal(withInternationalPrefix.phone, "+14155552671");
+});
+
 test("rejeita payload inválido e tentativa de escolha de tenant", () => {
   assert.throws(
     () =>

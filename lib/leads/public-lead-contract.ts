@@ -4,6 +4,7 @@ export const PUBLIC_LEAD_TIMEOUT_MS = 7_000;
 export const PUBLIC_LEAD_MAX_ATTEMPTS = 3;
 
 const IDEMPOTENCY_PATTERN = /^[A-Za-z0-9._:-]{8,128}$/;
+const INTEGRATION_KEY_PATTERN = /^[A-Za-z0-9._:-]{12,128}$/;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SIGNATURE_PATTERN = /^sha256=[a-f0-9]{64}$/;
 const UTM_KEYS = ["source", "medium", "campaign", "term", "content"] as const;
@@ -104,7 +105,13 @@ function normalizePhone(value: unknown) {
     throw new PublicLeadValidationError("phone deve ter entre 10 e 15 dígitos");
   }
 
-  return digits;
+  if (rawPhone.startsWith("+")) return `+${digits}`;
+  if (rawPhone.startsWith("00")) return `+${digits.slice(2)}`;
+  if (digits.startsWith("55") && (digits.length === 12 || digits.length === 13)) {
+    return digits;
+  }
+  if (digits.length === 10 || digits.length === 11) return digits;
+  return `+${digits}`;
 }
 
 function normalizeEmail(value: unknown) {
@@ -273,6 +280,11 @@ export function resolvePublicLeadClientConfig(
   if (!endpoint || !integrationKey || !hmacSecret) {
     throw new PublicLeadConfigurationError(
       "integração de leads não configurada",
+    );
+  }
+  if (!INTEGRATION_KEY_PATTERN.test(integrationKey)) {
+    throw new PublicLeadConfigurationError(
+      "identificador da integração inválido",
     );
   }
 
