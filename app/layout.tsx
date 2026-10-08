@@ -66,7 +66,7 @@ const schema = {
   name: "Arantes Instalações Visuais",
   alternateName: "Arantes Visual",
   url: "https://arantesvisual.com.br",
-  telephone: "+55 11 93207-2394",
+  telephone: "+55 11 96260-0528",
   address: {
     "@type": "PostalAddress",
     addressLocality: "São Paulo",
