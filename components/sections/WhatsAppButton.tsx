@@ -3,7 +3,7 @@
 import { trackWhatsAppClick } from "@/lib/gtm";
 import { useEffect, useState } from "react";
 
-const phone = "5511932072394";
+const phone = "5511962600528";
 
 const whatsapp = `https://wa.me/${phone}?text=${encodeURIComponent(
   "Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento."
