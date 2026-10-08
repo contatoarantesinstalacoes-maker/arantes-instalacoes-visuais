@@ -1,6 +1,7 @@
 "use client";
 
-import type { MouseEvent, ReactNode } from "react";
+import { trackWhatsAppClick } from "@/lib/gtm";
+import type { ReactNode } from "react";
 
 export const LEAD_FORM_CONTEXT_EVENT = "arantes-lead-form-context";
 
@@ -19,19 +20,22 @@ export default function LeadFormLink({
   service,
   onNavigate,
 }: LeadFormLinkProps) {
-  function selectContext(event: MouseEvent<HTMLAnchorElement>) {
-    window.dispatchEvent(
-      new CustomEvent(LEAD_FORM_CONTEXT_EVENT, {
-        detail: { formLocation, service },
-      }),
-    );
-    onNavigate?.();
-
-    if (event.defaultPrevented) return;
-  }
+  const message = service
+    ? `Olá! Vim pelo site da Arantes Visual e quero um orçamento para ${service}.`
+    : "Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento.";
+  const href = `https://wa.me/5511962600528?text=${encodeURIComponent(message)}`;
 
   return (
-    <a href="#orcamento" onClick={selectContext} className={className}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => {
+        trackWhatsAppClick(formLocation);
+        onNavigate?.();
+      }}
+      className={className}
+    >
       {children}
     </a>
   );
