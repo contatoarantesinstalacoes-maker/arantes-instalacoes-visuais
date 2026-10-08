@@ -7,7 +7,7 @@ import {
 } from "@/components/leads/LeadFormLink";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
-const whatsappUrl = `https://wa.me/5511932072394?text=${encodeURIComponent(
+const whatsappUrl = `https://wa.me/5511962600528?text=${encodeURIComponent(
   "Olá! Tentei solicitar um orçamento pelo site e gostaria de continuar pelo WhatsApp.",
 )}`;
 
