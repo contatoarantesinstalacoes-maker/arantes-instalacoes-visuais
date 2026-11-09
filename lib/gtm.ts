@@ -3,7 +3,7 @@ import { hasAnalyticsConsent } from "@/lib/consent";
 type EventData = Record<string, unknown>;
 
 export function trackEvent(event: string, data: EventData = {}) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !hasAnalyticsConsent()) return;
 
   const win = window as typeof window & {
     dataLayer?: EventData[];
@@ -33,8 +33,6 @@ export function trackLeadConversion(data: {
   formLocation: string;
   replayed: boolean;
 }) {
-  if (!hasAnalyticsConsent()) return;
-
   trackEvent("lead_conversion", {
     form_location: data.formLocation,
     replayed: data.replayed,
