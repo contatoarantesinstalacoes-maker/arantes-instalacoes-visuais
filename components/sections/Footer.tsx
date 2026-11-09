@@ -1,6 +1,6 @@
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 
-const phone = "5511962600528";
+const phone = "5511961600528";
 
 const whatsapp = `https://wa.me/${phone}`;
 
@@ -76,7 +76,7 @@ export default function Footer() {
               location="footer_phone"
               className="font-bold text-blue-400 hover:text-blue-300"
             >
-              (11) 96260-0528
+              (11) 96160-0528
             </WhatsAppLink>
 
           </div>
