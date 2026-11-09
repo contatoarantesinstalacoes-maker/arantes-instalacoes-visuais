@@ -24,18 +24,21 @@ async function completeForm(
   return form;
 }
 
-test("todos os CTAs de orçamento conduzem ao formulário e preservam WhatsApp", async ({
+test("todos os CTAs e contatos abrem o WhatsApp do proprietário", async ({
   page,
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Recusar" }).click();
 
-  const budgetLinks = page.locator('a[href="#orcamento"]');
-  const count = await budgetLinks.count();
-  expect(count).toBeGreaterThanOrEqual(10);
+  const whatsappLinks = page.locator('a[href^="https://wa.me/"]');
+  const count = await whatsappLinks.count();
+  expect(count).toBeGreaterThanOrEqual(12);
 
   for (let index = 0; index < count; index += 1) {
-    await expect(budgetLinks.nth(index)).toHaveAttribute("href", "#orcamento");
+    await expect(whatsappLinks.nth(index)).toHaveAttribute(
+      "href",
+      /^https:\/\/wa\.me\/5511961600528(?:\?text=.*)?$/,
+    );
   }
 
   await expect(
@@ -43,10 +46,20 @@ test("todos os CTAs de orçamento conduzem ao formulário e preservam WhatsApp",
   ).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Continuar pelo WhatsApp" }),
-  ).toHaveAttribute("href", /^https:\/\/wa\.me\//);
+  ).toHaveAttribute("href", /^https:\/\/wa\.me\/5511961600528\?text=/);
   await expect(
     page.locator("footer").getByRole("link", { name: "Falar pelo WhatsApp" }),
-  ).toHaveAttribute("href", /^https:\/\/wa\.me\//);
+  ).toHaveAttribute("href", "https://wa.me/5511961600528");
+  await expect(
+    page.locator("footer").getByRole("link", { name: "(11) 96160-0528" }),
+  ).toHaveAttribute("href", "https://wa.me/5511961600528");
+
+  const structuredData = await page
+    .locator('script[type="application/ld+json"]')
+    .allTextContents();
+  expect(structuredData.join("\\n")).toContain(
+    '"telephone":"+55 11 96160-0528"',
+  );
 });
 
 test("envia UTMs e consentimento e registra conversão somente após 201", async ({
