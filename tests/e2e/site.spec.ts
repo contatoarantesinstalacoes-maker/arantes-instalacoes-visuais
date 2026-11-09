@@ -90,6 +90,39 @@ test("does not load analytics before consent", async ({ page }) => {
   ).toHaveCount(0);
 });
 
+test("does not queue analytics events when consent is rejected", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Recusar" }).click();
+  await page.evaluate(() => {
+    document.addEventListener("click", (event) => event.preventDefault(), {
+      capture: true,
+    });
+  });
+
+  await page
+    .locator("footer")
+    .getByRole("link", { name: "Falar pelo WhatsApp" })
+    .click();
+  await page.locator("#portfolio").getByRole("button").first().click();
+
+  const events = await page.evaluate(
+    () =>
+      (
+        window as typeof window & {
+          dataLayer?: Array<Record<string, unknown>>;
+        }
+      ).dataLayer ?? [],
+  );
+  expect(events).not.toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({ event: "whatsapp_click" }),
+      expect.objectContaining({ event: "portfolio_open" }),
+    ]),
+  );
+});
+
 test("loads analytics only after explicit consent", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Aceitar" }).click();
@@ -126,11 +159,11 @@ test("keeps mobile navigation and layout usable", async ({ page }, testInfo) => 
   expect(hasHorizontalOverflow).toBe(false);
 });
 
-test("prefills service and preserves existing WhatsApp and portfolio events", async ({
+test("tracks WhatsApp and portfolio events after explicit consent", async ({
   page,
 }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Recusar" }).click();
+  await page.getByRole("button", { name: "Aceitar" }).click();
   await page.evaluate(() => {
     document.addEventListener("click", (event) => event.preventDefault(), {
       capture: true,
