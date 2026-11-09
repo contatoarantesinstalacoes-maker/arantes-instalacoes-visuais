@@ -23,7 +23,7 @@ export default function LeadFormLink({
   const message = service
     ? `Olá! Vim pelo site da Arantes Visual e quero um orçamento para ${service}.`
     : "Olá! Vim pelo site da Arantes Visual e quero solicitar um orçamento.";
-  const href = `https://wa.me/5511962600528?text=${encodeURIComponent(message)}`;
+  const href = `https://wa.me/5511961600528?text=${encodeURIComponent(message)}`;
 
   return (
     <a
